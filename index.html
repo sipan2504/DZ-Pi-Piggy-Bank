@@ -55,23 +55,7 @@
         }
     </style>
 
-    <script src="https://sdk.minepi.com/pi-sdk-client.js"></script>
-    <script>
-        // Pi SDK'yı başlat
-        Pi.init({
-            version: "2.0",
-            appName: "DZ Pi Piggy Bank", // Uygulamanızın adını doğrulayın
-            appId: "BURAYA_KENDI_UYGULAMA_ID_NIZI_YAPISTIRIN", // <<< BURASI ÇOK ÇOK ÖNEMLİ!
-           
-            onReady: function() {
-                console.log("Pi SDK hazır!");
-                // Buraya Pi SDK ile ilgili başlangıç işlemleri eklenebilir.
-                // Örneğin, bir kullanıcı girişi düğmesini etkinleştirmek gibi.
-            },
-            onIncompletePaymentFound: function(payment) {
-                // Eğer tamamlanmamış bir ödeme bulunursa bu fonksiyon çalışır.
-                console.log("Tamamlanmamış ödeme bulundu:", payment);
-            },
+    
             onPaymentComplete: function(payment) {
                 // Bir ödeme başarıyla tamamlandığında bu fonksiyon çalışır.
                 console.log("Ödeme tamamlandı:", payment);
@@ -119,5 +103,21 @@
             Hizmet Şartlarımızı okumak için <a href="terms.html" target="_blank">buraya tıklayın</a>. (Eğer oluşturdunuzsa)
         </p>
     </div>
-</body>
+<script src="https://sdk.minepi.com/pi-sdk-client.js"></script>
+    <script>
+        // Pi SDK'yı başlat
+        Pi.init({
+            version: "2.0",
+            appName: "DZ Pi Piggy Bank", // Uygulamanızın adını doğrulayın
+            appId: "dz-pi-piggy-bank", // <<< BURASI ÇOK ÇOK ÖNEMLİ!
+           
+            onReady: function() {
+                console.log("Pi SDK hazır!");
+                // Buraya Pi SDK ile ilgili başlangıç işlemleri eklenebilir.
+                // Örneğin, bir kullanıcı girişi düğmesini etkinleştirmek gibi.
+            },
+            onIncompletePaymentFound: function(payment) {
+                // Eğer tamamlanmamış bir ödeme bulunursa bu fonksiyon çalışır.
+                console.log("Tamamlanmamış ödeme bulundu:", payment);
+            },</body>
 </html>
