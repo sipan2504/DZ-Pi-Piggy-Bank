@@ -1,123 +1,123 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DZ Pi Piggy Bank Uygulaması</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            background-color: #f0f2f5;
-            color: #333;
-            text-align: center;
-        }
-        .container {
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 500px;
-            width: 90%;
-        }
-        h1 {
-            color: #530080; /* Pi rengi */
-            margin-bottom: 20px;
-        }
-        p {
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-        .button {
-            display: inline-block;
-            background-color: #530080; /* Pi rengi */
-            color: white;
-            padding: 12px 25px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 18px;
-            margin-top: 20px;
-            transition: background-color 0.3s ease;
-        }
-        .button:hover {
-            background-color: #6a00a0; /* Hover rengi */
-        }
-        a {
-            color: #530080;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DZ Pi Piggy Bank Uygulaması</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f2f5;
+            color: #333;
+            text-align: center;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 90%;
+        }
+        h1 {
+            color: #530080; /* Pi rengi */
+            margin-bottom: 20px;
+        }
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .button {
+            display: inline-block;
+            background-color: #530080; /* Pi rengi */
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 18px;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #6a00a0; /* Hover rengi */
+        }
+        a {
+            color: #530080;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 
-    
-            onPaymentComplete: function(payment) {
-                // Bir ödeme başarıyla tamamlandığında bu fonksiyon çalışır.
-                console.log("Ödeme tamamlandı:", payment);
-            },
-            onCancel: function() {
-                // Kullanıcı bir işlemi iptal ettiğinde bu fonksiyon çalışır.
-                console.log("İşlem iptal edildi.");
-            },
-            onFail: function(error) {
-                // Pi SDK ile ilgili bir hata oluştuğunda bu fonksiyon çalışır.
-                console.error("Pi SDK hatası:", error);
-                // Hata mesajını kullanıcıya göstermek isteyebilirsiniz.
-                alert("Uygulama yüklenirken bir hata oluştu: " + error.message);
-            }
-        });
+    
+            onPaymentComplete: function(payment) {
+                // Bir ödeme başarıyla tamamlandığında bu fonksiyon çalışır.
+                console.log("Ödeme tamamlandı:", payment);
+            },
+            onCancel: function() {
+                // Kullanıcı bir işlemi iptal ettiğinde bu fonksiyon çalışır.
+                console.log("İşlem iptal edildi.");
+            },
+            onFail: function(error) {
+                // Pi SDK ile ilgili bir hata oluştuğunda bu fonksiyon çalışır.
+                console.error("Pi SDK hatası:", error);
+                // Hata mesajını kullanıcıya göstermek isteyebilirsiniz.
+                alert("Uygulama yüklenirken bir hata oluştu: " + error.message);
+            }
+        });
 
-        // "Uygulamayı Açmak İçin Tıklayın" düğmesine tıklandığında Pi SDK ile etkileşim başlatılabilir.
-        // Örneğin, kullanıcıyı Pi Network'e yönlendirmek veya kimlik doğrulamayı başlatmak için.
-        document.addEventListener('DOMContentLoaded', (event) => {
-            const openAppButton = document.querySelector('.button');
-            if (openAppButton) {
-                openAppButton.addEventListener('click', function(e) {
-                    e.preventDefault(); // Varsayılan bağlantı davranışını engeller
-                    // Burada Pi.authenticate() veya Pi.payments.makePayment() gibi Pi SDK fonksiyonlarını çağırabilirsiniz.
-                    // Örneğin: Pi.authenticate().then(auth => console.log(auth)).catch(err => console.error(err));
-                    alert("Uygulama açılıyor... (Pi SDK etkileşimi buradan başlar)");
-                });
-            }
-        });
-    </script>
+        // "Uygulamayı Açmak İçin Tıklayın" düğmesine tıklandığında Pi SDK ile etkileşim başlatılabilir.
+        // Örneğin, kullanıcıyı Pi Network'e yönlendirmek veya kimlik doğrulamayı başlatmak için.
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const openAppButton = document.querySelector('.button');
+            if (openAppButton) {
+                openAppButton.addEventListener('click', function(e) {
+                    e.preventDefault(); // Varsayılan bağlantı davranışını engeller
+                    // Burada Pi.authenticate() veya Pi.payments.makePayment() gibi Pi SDK fonksiyonlarını çağırabilirsiniz.
+                    // Örneğin: Pi.authenticate().then(auth => console.log(auth)).catch(err => console.error(err));
+                    alert("Uygulama açılıyor... (Pi SDK etkileşimi buradan başlar)");
+                });
+            }
+        });
+    </script>
 </head>
 <body>
-    <div class="container">
-        <h1>DZ Pi Piggy Bank Uygulamasına Hoş Geldiniz!</h1>
-        <p>Ailenizin geleceği için Pi birikimi yapmanıza yardımcı olan platformunuz.</p>
-        <p>Uygulamamıza Pi Tarayıcısı üzerinden erişmek için aşağıdaki düğmeye tıklayın:</p>
-        <p>
-            <a href="#" class="button" target="_blank">Uygulamayı Açmak için Tıklayın</a>
-        </p>
+    <div class="container">
+        <h1>DZ Pi Piggy Bank Uygulamasına Hoş Geldiniz!</h1>
+        <p>Ailenizin geleceği için Pi birikimi yapmanıza yardımcı olan platformunuz.</p>
+        <p>Uygulamamıza Pi Tarayıcısı üzerinden erişmek için aşağıdaki düğmeye tıklayın:</p>
+        <p>
+            <a href="#" class="button" target="_blank">Uygulamayı Açmak için Tıklayın</a>
+        </p>
 
-        <p style="margin-top: 30px;">
-            Gizlilik Politikamızı okumak için <a href="privacy.html" target="_blank">buraya tıklayın</a>.
-        </p>
-        <p>
-            Hizmet Şartlarımızı okumak için <a href="terms.html" target="_blank">buraya tıklayın</a>. (Eğer oluşturdunuzsa)
-        </p>
-    </div>
+        <p style="margin-top: 30px;">
+            Gizlilik Politikamızı okumak için <a href="privacy.html" target="_blank">buraya tıklayın</a>.
+        </p>
+        <p>
+            Hizmet Şartlarımızı okumak için <a href="terms.html" target="_blank">buraya tıklayın</a>. (Eğer oluşturdunuzsa)
+        </p>
+    </div>
 <script src="https://sdk.minepi.com/pi-sdk-client.js"></script>
-    <script>
-        // Pi SDK'yı başlat
-        Pi.init({
-            version: "2.0",
-            appName: "DZ Pi Piggy Bank", // Uygulamanızın adını doğrulayın
-            appId: "dz-pi-piggy-bank", // <<< BURASI ÇOK ÇOK ÖNEMLİ!
-           
-            onReady: function() {
-                console.log("Pi SDK hazır!");
-                // Buraya Pi SDK ile ilgili başlangıç işlemleri eklenebilir.
-                // Örneğin, bir kullanıcı girişi düğmesini etkinleştirmek gibi.
-            },
-            onIncompletePaymentFound: function(payment) {
-                // Eğer tamamlanmamış bir ödeme bulunursa bu fonksiyon çalışır.
-                console.log("Tamamlanmamış ödeme bulundu:", payment);
-            },</body>
+    <script>
+        // Pi SDK'yı başlat
+        Pi.init({
+            version: "2.0",
+            appName: "DZ Pi Piggy Bank", // Uygulamanızın adını doğrulayın
+            appId: "dz-pi-piggy-bank", // <<< BURASI ÇOK ÇOK ÖNEMLİ!
+           
+            onReady: function() {
+                console.log("Pi SDK hazır!");
+                // Buraya Pi SDK ile ilgili başlangıç işlemleri eklenebilir.
+                // Örneğin, bir kullanıcı girişi düğmesini etkinleştirmek gibi.
+            },
+            onIncompletePaymentFound: function(payment) {
+                // Eğer tamamlanmamış bir ödeme bulunursa bu fonksiyon çalışır.
+                console.log("Tamamlanmamış ödeme bulundu:", payment);
+            },</body>
 </html>
