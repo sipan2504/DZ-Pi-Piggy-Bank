@@ -88,44 +88,4 @@
         Pi.init({
             version: "2.0",
             appName: "DZ Pi Piggy Bank", // Uygulamanızın adını doğrulayın
-            appId: "dz-pi-piggy-bank", // Daha önceki App Studio ayarınızdan emin olun
-
-            onReady: function() {
-                console.log("Pi SDK hazır!");
-                // Buraya Pi SDK ile ilgili başlangıç işlemleri eklenebilir.
-            },
-            onIncompletePaymentFound: function(payment) {
-                // Eğer tamamlanmamış bir ödeme bulunursa bu fonksiyon çalışır.
-                console.log("Tamamlanmamış ödeme bulundu:", payment);
-            },
-            onPaymentComplete: function(payment) {
-                // Bir ödeme başarıyla tamamlandığında bu fonksiyon çalışır.
-                console.log("Ödeme tamamlandı:", payment);
-            },
-            onCancel: function() {
-                // Kullanıcı bir işlemi iptal ettiğinde bu fonksiyon çalışır.
-                console.log("İşlem iptal edildi.");
-            },
-            onFail: function(error) {
-                // Pi SDK ile ilgili bir hata oluştuğunda bu fonksiyon çalışır.
-                console.error("Pi SDK hatası:", error);
-                // Hata mesajını kullanıcıya göstermek isteyebilirsiniz.
-                alert("Uygulama yüklenirken bir hata oluştu: " + error.message);
-            }
-        });
-
-        // "Uygulamayı Açmak İçin Tıklayın" düğmesine tıklandığında Pi SDK ile etkileşim başlatılabilir.
-        document.addEventListener('DOMContentLoaded', (event) => {
-            const openAppButton = document.querySelector('.button');
-            if (openAppButton) {
-                openAppButton.addEventListener('click', function(e) {
-                    e.preventDefault(); // Varsayılan bağlantı davranışını engeller
-                    // Burada Pi.authenticate() veya Pi.payments.makePayment() gibi Pi SDK fonksiyonlarını çağırabilirsiniz.
-                    // Örnek: Pi.authenticate().then(auth => console.log(auth)).catch(err => console.error(err));
-                    alert("Uygulama açılıyor... (Pi SDK etkileşimi buradan başlar)");
-                });
-            }
-        });
-    </script>
-</body>
-</html>
+            appId: "dz
