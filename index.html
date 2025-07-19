@@ -4,113 +4,135 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DZ Pi Piggy Bank Uygulaması</title>
-    <script src="https://sdk.mine.pi/pi-sdk-latest.js"></script>
+    <script src="https://sdk.mine.pi/pi-sdk.js"></script>
     <style>
-        /* Bu stil kodu sayfanın görünümünü ayarlar. */
+        /* Bu stil kodu sayfanın görünüm ayarlarıdır. */
         body {
             font-family: Arial, sans-serif;
             display: flex;
-            flex-direction: column; /* İçeriği dikey sırala */
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             margin: 0;
-            background-color: #f0f2f5;
-            color: #333;
+            background-color: #f0f2f5; /* Açık gri arka plan */
+            color: #333; /* Koyu gri metin */
             text-align: center;
+            padding: 20px;
+            box-sizing: border-box; /* İç boşlukların boyutu etkilememesi için */
         }
         .container {
             background-color: #fff;
             padding: 30px;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             max-width: 500px;
-            width: 90%;
-            margin-bottom: 20px; /* Alttaki linkler için boşluk */
+            width: 100%;
         }
         h1 {
-            color: #530080; /* Pi rengi */
+            color: #6a0dad; /* Pi moru */
             margin-bottom: 20px;
+            font-size: 1.8em;
         }
         p {
+            margin-bottom: 25px;
             line-height: 1.6;
-            margin-bottom: 15px;
         }
-        .button {
-            display: inline-block;
-            background-color: #530080; /* Pi rengi */
+        button {
+            background-color: #6a0dad; /* Pi moru */
             color: white;
-            padding: 12px 25px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 18px;
-            margin-top: 20px;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1em;
+            cursor: pointer;
             transition: background-color 0.3s ease;
-            cursor: pointer; /* Düğmenin tıklanabilir olduğunu belirtir */
+            width: 100%;
+            max-width: 300px; /* Düğme genişliği sınırlaması */
+            box-sizing: border-box;
         }
-        .button:hover {
-            background-color: #6a00a0; /* Hover rengi */
+        button:hover {
+            background-color: #5a099a; /* Koyu mor */
         }
         a {
-            color: #530080;
+            color: #6a0dad;
             text-decoration: none;
+            margin-top: 15px;
+            display: block;
         }
         a:hover {
             text-decoration: underline;
         }
-        .footer-links {
-            margin-top: 20px;
+        /* Pi logo ve Testnet etiketi için stil */
+        .app-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
         }
-        .footer-links p {
-            margin: 5px 0;
+        .pi-logo {
+            width: 50px; /* Logo boyutu */
+            height: 50px;
+            margin-right: 10px;
+        }
+        .testnet-label {
+            background-color: #f39c12; /* Turuncu renk */
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8em;
+            margin-left: 10px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>DZ Pi Piggy Bank Uygulamasına Hoş Geldiniz!</h1>
+        <div class="app-header">
+            <img src="https://mine.pi/img/logo.svg" alt="Pi Logo" class="pi-logo">
+            <h1>DZ Pi Piggy Bank Uygulamasına Hoş Geldiniz!</h1>
+            <span class="testnet-label">Testnet</span>
+        </div>
+        
         <p>Ailenizin geleceği için Pi birikimi yapmanıza yardımcı olan platformunuz.</p>
         <p>Uygulamamıza Pi Tarayıcısı üzerinden erişmek için aşağıdaki düğmeye tıklayın:</p>
-        <p>
-            <button id="openAppButton" class="button">Uygulamayı Açmak için Tıklayın</button> 
-        </p>
 
-        <div class="footer-links">
-            <p>
-                <a href="privacy-policy.html" target="_blank">Gizlilik Politikamızı okumak için buraya tıklayın.</a> 
-            </p>
-            <p>
-                <a href="Terms.html" target="_blank">Hizmet Şartlarımızı okumak için buraya tıklayın.</a>
-            </p>
-        </div>
+        <button id="openAppButton">Uygulamayı Açmak için Tıklayın</button>
+
+        <a href="privacy-policy.html">Gizlilik Politikamızı okumak için buraya tıklayın.</a>
+        <a href="Terms.html">Hizmet Şartlarımızı okumak için buraya tıklayın.</a>
     </div>
 
     <script>
-        // Pi SDK'yı başlat
-        Pi.init({
-            version: "2.0",
-            appId: "dz-pi-piggy-bank" // App ID'niz artık tamamen küçük harfli depo adınızla eşleşiyor.
-        });
+        // Pi SDK'sını başlat
+        // app_id'nizin Pi App Studio'daki App Name ile TAM OLARAK EŞLEŞTİĞİNDEN EMİN OLUN.
+        // Şu anki App Name: dz-pi-piggy-bank
+        Pi.init({ version: "2.0", app_id: "dz-pi-piggy-bank" });
 
-        // Düğmeye tıklama olay dinleyicisini ekle
-        document.getElementById("openAppButton").addEventListener("click", function() {
-            // Pi kimlik doğrulamasını başlat
-            Pi.authenticate(["username", "payments"], onAuthResult);
+        // Düğmeye tıklandığında kimlik doğrulamayı tetikle
+        document.getElementById('openAppButton').addEventListener('click', () => {
+            // İzinleri tanımla: 'username' ve 'wallets' temel izinlerdir.
+            const scopes = ["username", "wallets"];
 
-            function onAuthResult(authData) {
-                if (authData.accessToken) {
-                    // Kullanıcı başarıyla kimlik doğruladı
-                    console.log("Kullanıcı başarıyla kimlik doğruladı:", authData.user.username);
-                    // Burada uygulamanızın ana içeriğine yönlendirme veya başka işlemler yapabilirsiniz.
-                    // Örneğin: window.location.href = "app-main.html"; // Bu satırı etkinleştirebilirsiniz
-                    alert("Hoş geldiniz, " + authData.user.username + "!"); // Test amaçlı bir uyarı
-                } else {
-                    // Kimlik doğrulama başarısız oldu veya iptal edildi
-                    console.error("Kimlik doğrulama başarısız oldu veya iptal edildi:", authData.error);
-                    alert("Uygulamayı açmak için kimlik doğrulama gerekli veya iptal edildi."); // Test amaçlı bir uyarı
-                }
+            // Kimlik doğrulama tamamlandığında veya hata oluştuğunda çağrılacak geri çağırma fonksiyonu
+            function onInCompletePaymentFound(payment) {
+                // Bu fonksiyon genellikle yarım kalmış ödemeler için kullanılır.
+                // Şimdilik sadece konsola yazdırabiliriz.
+                console.log("Yarım kalmış ödeme bulundu:", payment);
             }
-        });
-    </script>
-</body>
-</html>
+
+            // Sunucu onayı için hazır olunduğunda çağrılacak geri çağırma fonksiyonu
+            function onReadyForServerApproval(paymentId) {
+                // Bu fonksiyon, Pi kimlik doğrulaması başarılı olduğunda çağrılır.
+                // Burada genellikle sunucunuza bir istek göndererek ödemeyi veya kimlik doğrulama işlemini tamamlarsınız.
+                console.log("Sunucu onayı için hazır: ", paymentId);
+                // Örneğin: fetch('/api/complete-auth', { method: 'POST', body: JSON.stringify({ paymentId: paymentId }) });
+            }
+
+            // Hata oluştuğunda çağrılacak geri çağırma fonksiyonu
+            function onCancel(error) {
+                console.error("Kimlik doğrulama iptal edildi veya hata oluştu:", error);
+                alert("Kimlik doğrulama iptal edildi veya bir hata oluştu: " + error.message);
+            }
+
+            // Kimlik doğrulama pop-up'ını göster
+            Pi.authenticate(scopes,
