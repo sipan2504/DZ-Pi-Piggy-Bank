@@ -77,4 +77,26 @@
 
         <div class="footer-links">
             <p>
-                <a href="privacy-policy.html" target="_
+                <a href="privacy-policy.html" target="_blank">Gizlilik Politikamızı okumak için buraya tıklayın.</a> 
+            </p>
+            <p>
+                <a href="Terms.html" target="_blank">Hizmet Şartlarımızı okumak için buraya tıklayın.</a>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Pi SDK'yı başlat
+        Pi.init({
+            version: "2.0",
+            appId: "dz-pi-piggy-bank" // App ID'niz artık tamamen küçük harfli depo adınızla eşleşiyor.
+        });
+
+        // Düğmeye tıklama olay dinleyicisini ekle
+        document.getElementById("openAppButton").addEventListener("click", function() {
+            // Pi kimlik doğrulamasını başlat
+            Pi.authenticate(["username", "payments"], onAuthResult);
+
+            function onAuthResult(authData) {
+                if (authData.accessToken) {
+                    // Kullanıcı başarıyla kimlik doğ
