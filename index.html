@@ -99,4 +99,18 @@
 
             function onAuthResult(authData) {
                 if (authData.accessToken) {
-                    // Kullanıcı başarıyla kimlik doğ
+                    // Kullanıcı başarıyla kimlik doğruladı
+                    console.log("Kullanıcı başarıyla kimlik doğruladı:", authData.user.username);
+                    // Burada uygulamanızın ana içeriğine yönlendirme veya başka işlemler yapabilirsiniz.
+                    // Örneğin: window.location.href = "app-main.html"; // Bu satırı etkinleştirebilirsiniz
+                    alert("Hoş geldiniz, " + authData.user.username + "!"); // Test amaçlı bir uyarı
+                } else {
+                    // Kimlik doğrulama başarısız oldu veya iptal edildi
+                    console.error("Kimlik doğrulama başarısız oldu veya iptal edildi:", authData.error);
+                    alert("Uygulamayı açmak için kimlik doğrulama gerekli veya iptal edildi."); // Test amaçlı bir uyarı
+                }
+            }
+        });
+    </script>
+</body>
+</html>
