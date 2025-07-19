@@ -6,7 +6,6 @@
     <title>DZ Pi Piggy Bank Uygulaması</title>
     <script src="https://sdk.mine.pi/pi-sdk.js"></script>
     <style>
-        /* Bu stil kodu sayfanın görünüm ayarlarıdır. */
         body {
             font-family: Arial, sans-serif;
             display: flex;
@@ -15,11 +14,11 @@
             align-items: center;
             min-height: 100vh;
             margin: 0;
-            background-color: #f0f2f5; /* Açık gri arka plan */
-            color: #333; /* Koyu gri metin */
+            background-color: #f0f2f5;
+            color: #333;
             text-align: center;
             padding: 20px;
-            box-sizing: border-box; /* İç boşlukların boyutu etkilememesi için */
+            box-sizing: border-box;
         }
         .container {
             background-color: #fff;
@@ -30,7 +29,7 @@
             width: 100%;
         }
         h1 {
-            color: #6a0dad; /* Pi moru */
+            color: #6a0dad;
             margin-bottom: 20px;
             font-size: 1.8em;
         }
@@ -39,7 +38,7 @@
             line-height: 1.6;
         }
         button {
-            background-color: #6a0dad; /* Pi moru */
+            background-color: #6a0dad;
             color: white;
             padding: 15px 30px;
             border: none;
@@ -48,11 +47,11 @@
             cursor: pointer;
             transition: background-color 0.3s ease;
             width: 100%;
-            max-width: 300px; /* Düğme genişliği sınırlaması */
+            max-width: 300px;
             box-sizing: border-box;
         }
         button:hover {
-            background-color: #5a099a; /* Koyu mor */
+            background-color: #5a099a;
         }
         a {
             color: #6a0dad;
@@ -63,7 +62,6 @@
         a:hover {
             text-decoration: underline;
         }
-        /* Pi logo ve Testnet etiketi için stil */
         .app-header {
             display: flex;
             align-items: center;
@@ -71,12 +69,12 @@
             margin-bottom: 20px;
         }
         .pi-logo {
-            width: 50px; /* Logo boyutu */
+            width: 50px;
             height: 50px;
             margin-right: 10px;
         }
         .testnet-label {
-            background-color: #f39c12; /* Turuncu renk */
+            background-color: #f39c12;
             color: white;
             padding: 5px 10px;
             border-radius: 5px;
@@ -104,35 +102,4 @@
 
     <script>
         // Pi SDK'sını başlat
-        // app_id'nizin Pi App Studio'daki App Name ile TAM OLARAK EŞLEŞTİĞİNDEN EMİN OLUN.
-        // Şu anki App Name: dz-pi-piggy-bank
-        Pi.init({ version: "2.0", app_id: "dz-pi-piggy-bank" });
-
-        // Düğmeye tıklandığında kimlik doğrulamayı tetikle
-        document.getElementById('openAppButton').addEventListener('click', () => {
-            // İzinleri tanımla: 'username' ve 'wallets' temel izinlerdir.
-            const scopes = ["username", "wallets"];
-
-            // Kimlik doğrulama tamamlandığında veya hata oluştuğunda çağrılacak geri çağırma fonksiyonu
-            function onInCompletePaymentFound(payment) {
-                // Bu fonksiyon genellikle yarım kalmış ödemeler için kullanılır.
-                // Şimdilik sadece konsola yazdırabiliriz.
-                console.log("Yarım kalmış ödeme bulundu:", payment);
-            }
-
-            // Sunucu onayı için hazır olunduğunda çağrılacak geri çağırma fonksiyonu
-            function onReadyForServerApproval(paymentId) {
-                // Bu fonksiyon, Pi kimlik doğrulaması başarılı olduğunda çağrılır.
-                // Burada genellikle sunucunuza bir istek göndererek ödemeyi veya kimlik doğrulama işlemini tamamlarsınız.
-                console.log("Sunucu onayı için hazır: ", paymentId);
-                // Örneğin: fetch('/api/complete-auth', { method: 'POST', body: JSON.stringify({ paymentId: paymentId }) });
-            }
-
-            // Hata oluştuğunda çağrılacak geri çağırma fonksiyonu
-            function onCancel(error) {
-                console.error("Kimlik doğrulama iptal edildi veya hata oluştu:", error);
-                alert("Kimlik doğrulama iptal edildi veya bir hata oluştu: " + error.message);
-            }
-
-            // Kimlik doğrulama pop-up'ını göster
-            Pi.authenticate(scopes,
+        Pi.init({ version: "2.0", app_id: "dz-pi-piggy-bank" }); // app_id'nizin doğru olduğundan emin olun
